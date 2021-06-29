@@ -1,3 +1,4 @@
+import React from "react";
 import { useQuery } from "@apollo/client";
 import { Button, Flex, Grid, Text } from "@chakra-ui/react";
 import { useHistory } from "react-router-dom";
@@ -38,16 +39,23 @@ const Country = (props) => {
       {error && <Text color="white">Error ;(</Text>}
       <Flex height="100%" flexDirection="column" overflow="auto" mb="20px">
         {data &&
-          data?.countries.map((country) => (
-            <Grid key={country.name} gridTemplateColumns="1fr 30px 100px" gap='25px'>
-              <Text>{country.name}</Text>
-              <Text>{country.emoji}</Text>
-              <Text>{country.languages[0]?.name}</Text>
-            </Grid>
-          ))}
+          React.Children.toArray(
+            data?.countries.map((country, i) => (
+              <Grid
+                p="10px"
+                gridTemplateColumns="1fr 30px 100px"
+                gap="25px"
+                bg={i % 2 === 0 ? "rgba(256, 256, 256, 0.1)" : ""}
+              >
+                <Text>{country.name}</Text>
+                <Text>{country.emoji}</Text>
+                <Text>{country.languages[0]?.name}</Text>
+              </Grid>
+            ))
+          )}
       </Flex>
       <Grid gridTemplateColumns="1fr 1fr" color="black">
-        <Button w="200px" mr='15px' onClick={() => redirectToHomepage()}>
+        <Button w="200px" mr="15px" onClick={() => redirectToHomepage()}>
           Back to homepage
         </Button>
         <Button w="200px" onClick={() => redirectToContinents()}>
