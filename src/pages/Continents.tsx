@@ -2,14 +2,15 @@ import { Flex } from "@chakra-ui/react";
 import { useQuery } from "@apollo/client";
 
 import { GET_CONTINENTS } from "./../queries";
+import { IContinentsData } from "../interfaces/IContinent";
 
 const Continents = () => {
-  const { loading, error, data } = useQuery(GET_CONTINENTS);
+  const { loading, error, data } = useQuery<IContinentsData>(GET_CONTINENTS);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
-  return data.continents.map(({ code, name }) => (
+  return data && data.continents.map(({ code, name }) => (
     <Flex key={code} flexDirection='column'>
       <p>
         {code}: {name}
