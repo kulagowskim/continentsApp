@@ -15,3 +15,7 @@ export interface ICountry {
   emojiU: string;
   states: IState[];
 }
+
+export interface ICountriesData {
+  countries: ICountry[];
+}

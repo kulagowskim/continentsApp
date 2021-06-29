@@ -8,3 +8,15 @@ export const GET_CONTINENTS = gql`
     }
   }
 `;
+
+export const GET_COUNTRIES = gql`
+  query GetCountries($code: String!) {
+    countries(filter: { continent: { eq: $code } }) {
+      name
+      emoji
+      languages {
+        name
+      }
+    }
+  }
+`;

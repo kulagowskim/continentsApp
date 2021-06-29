@@ -10,8 +10,12 @@ const Continents = () => {
   const { loading, error, data } = useQuery<IContinentsData>(GET_CONTINENTS);
   const history = useHistory();
 
-  const handleClick = () => {
+  const redirectToHomepage = () => {
     history.push("/");
+  };
+
+  const redirectToCountries = (code) => {
+    history.push(`/continents/${code}`);
   };
 
   return (
@@ -32,12 +36,18 @@ const Continents = () => {
       {error && <Text color="white">Error ;(</Text>}
       {data &&
         data.continents.map(({ code, name }) => (
-          <Flex key={code} flexDirection="column" flexDir="row">
+          <Flex
+            key={code}
+            flexDirection="column"
+            flexDir="row"
+            cursor="pointer"
+            onClick={() => redirectToCountries(code)}
+          >
             <Text fontWeight="bold">{code}:</Text>
-            <Text ml='10px'>{name}</Text>
+            <Text ml="10px">{name}</Text>
           </Flex>
         ))}
-      <Button w="200px" color='black' onClick={() => handleClick()}>
+      <Button w="200px" color="black" onClick={() => redirectToHomepage()}>
         Back to homepage
       </Button>
     </Flex>

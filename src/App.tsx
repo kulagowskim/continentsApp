@@ -1,8 +1,10 @@
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { ChakraProvider, CSSReset, Box } from "@chakra-ui/react";
 
+import './styles.css';
 import Continents from "./pages/Continents";
 import Home from "./pages/Home";
+import Country from "./pages/Country";
 
 const App = () => (
   <ChakraProvider>
@@ -11,7 +13,8 @@ const App = () => (
       <Router>
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route path="/continents" component={Continents} />
+          <Route exact path="/continents" component={Continents} />
+          <Route path="/continents/:code" component={Country} />
         </Switch>
       </Router>
     </Box>
