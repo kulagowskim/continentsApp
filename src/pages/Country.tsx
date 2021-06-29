@@ -39,10 +39,10 @@ const Country = (props) => {
       <Flex height="100%" flexDirection="column" overflow="auto" mb="20px">
         {data &&
           data?.countries.map((country) => (
-            <Grid key={country.name} gridTemplateColumns="1fr 1fr 1fr">
+            <Grid key={country.name} gridTemplateColumns="1fr 30px 100px" gap='25px'>
               <Text>{country.name}</Text>
               <Text>{country.emoji}</Text>
-              <Text>{country.languages[0].name}</Text>
+              <Text>{country.languages[0]?.name}</Text>
             </Grid>
           ))}
       </Flex>

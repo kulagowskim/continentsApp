@@ -10,7 +10,7 @@ const App = () => (
   <ChakraProvider>
     <CSSReset />
     <Box minH='100vh'>
-      <Router>
+      <Router basename="/continentsApp">
         <Switch>
           <Route exact path="/" component={Home} />
           <Route exact path="/continents" component={Continents} />
